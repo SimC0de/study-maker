@@ -12,9 +12,9 @@ function loadComposerDatabase() {
   } catch {
     return undefined;
   }
-}
+} 
 
-export const db =
+ export const db =
   loadComposerDatabase() ??
   (process.env.DATABASE_URL
     ? postgres<Contract>({ contractJson, url: process.env.DATABASE_URL })

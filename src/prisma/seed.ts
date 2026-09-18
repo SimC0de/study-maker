@@ -6,6 +6,11 @@ const users = [
   { email: "carol@prisma.io", username: "carol", name: "Carol" },
 ];
 
+const subjects = [
+  { title: "React" },
+  { title: "Typescript"}
+]
+
 let pendingSeed: Promise<void> | undefined;
 
 async function runSeed(): Promise<void> {
@@ -16,6 +21,13 @@ async function runSeed(): Promise<void> {
       create: user,
       update: {},
       conflictOn: { email: user.email },
+    });
+  }
+
+  for (const subject of subjects) {
+    await db.orm.public.Subject.upsert({
+      create: subject,
+      update: {},
     });
   }
 }

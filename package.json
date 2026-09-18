@@ -26,6 +26,7 @@
     "@prisma/composer": "0.19.0",
     "@prisma/composer-prisma-cloud": "0.19.0",
     "@prisma/orm-postgres": "8.0.0-rc.10",
+    "@tailwindcss/vite": "^4.3.3",
     "alchemy": "2.0.0-beta.74",
     "next": "16.1.6",
     "react": "19.2.3",
@@ -33,12 +34,15 @@
     "temporal-polyfill": "^1.0.4"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^25.6.2",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
+    "postcss": "^8.5.28",
     "prisma": "latest",
+    "tailwindcss": "^4.3.3",
     "tsx": "^4.7.1",
     "typescript": "^5.9.3"
   },

@@ -19,3 +19,8 @@ model Post {
   createdAt TimestamptzString @default(now())
   updatedAt temporal.updatedAtString()
 }
+
+model Subject {
+  id Int @id @default(autoincrement())
+  title String @unique
+}
