@@ -1,19 +1,13 @@
 import SubjectContainer from "@/src/app/components/subject/SubjectContainer";
 import SubjectActions from "@/src/app/components/subject/SubjectActions";
+import { getAllSubjects } from "../prisma/actions";
+import Subjects from "./components/subject/Subjects";
 
-export default function Home({
-  searchParams
-}: {
-  searchParams: Promise<{
-    title?: string
-  }>;
-}) {
+export default async function Home() {
+  const subjects = await getAllSubjects();
   return (
     <>
-      <div className="min-h-dvh min-w-dvh p-10 flex flex-col">
-        <SubjectActions />
-        <SubjectContainer searchParams={searchParams} />
-      </div>
+      <Subjects subjects={subjects} />
     </>
   );
 }
