@@ -1,19 +1,15 @@
 "use client"
 
-import { useRouter } from "next/navigation"
-    ;
-export default function FilterTitle() {
-    const router = useRouter();
+import { filterSubjects } from "@/src/prisma/actions";
+import { useRouter } from "next/navigation";
+import { useRef } from 'react';
 
-    function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-        const value = e.target.value;
-
-        router.replace(`/?title=${encodeURIComponent(value)}`);
-    }
-
+// @ts-expect-error handleFilter expecting any
+export default function FilterTitle({ handleFilter }) {
+    const inputRef = useRef<HTMLInputElement>(null);
     return (
         <>
-            <input type="text" className="border border-black rounded-4xl" onChange={handleChange}/>
+            <input ref={inputRef} type="text" className="border border-black rounded-4xl" onChange={() => handleFilter(inputRef.current?.value)} />
         </>
     )
 }
