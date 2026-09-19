@@ -13,7 +13,7 @@ export async function createSubject(fields: { title: string;}) {
 }
 
 export async function getAllSubjects() {
-    const subjects = db.orm.public.Subject.select("id", "title").all();
+    const subjects = db.orm.public.Subject.all();
     return subjects;
 }
 
