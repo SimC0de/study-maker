@@ -1,18 +1,11 @@
 
-
-import { getAllSubjects } from '@/src/prisma/actions'
-import { db } from '@/src/prisma/db';
-import Link from 'next/link';
 import SubjectButton from './SubjectButton';
 
-export default async function SubjectContainer({ searchParams }: {
-    searchParams: Promise<{
-        title?: string
-    }>;
-}) {
-    const params = await searchParams;
-    const title = params?.title ?? "";
-    const subjects = await db.orm.public.Subject.where((p) => p.title.ilike(`%${title}%`)).all();
+//@ts-expect-error subjects argument expecting any
+export default function SubjectContainer({ subjects, handleSetSubject, toFilter }) {
+    //@ts-expect-error subject expecting any
+    const filteredSubjects = subjects.filter((subject) => subject.title.toLowerCase().includes(toFilter));
+    console.log(filteredSubjects);
     return (
         <div className="grid grid-cols-5 grid-rows-9 border rounded-b-4xl border-t-transparent flex-1 p-10 gap-10">
             {!subjects ? (
@@ -24,9 +17,12 @@ export default async function SubjectContainer({ searchParams }: {
                 <p className="empty">No users found.</p>
             ) : (
                 <>
-                    {subjects.map((subject) => (
-                        <SubjectButton key={subject.id} subjectTitle={subject.title} />
-                    ))}
+                            {
+                                //@ts-expect-error subject argument expecting any
+                                filteredSubjects.map((subject) => (
+                                    //@ts-expect-error handleSetSubject have error I do not comprehend
+                                    <SubjectButton key={subject.id} subjectTitle={subject.title} handleSetSubject={handleSetSubject} />
+                                ))}
                 </>
             )}
         </div>
