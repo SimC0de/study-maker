@@ -31,3 +31,7 @@ export async function updateTitleSubject(input: string, input2: string) {
   const subject = db.orm.public.Subject.where({ title: input }).update({ title: input2 });
   return subject;
 }
+
+export async function getAllLessons() {
+  
+}
